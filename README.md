@@ -50,7 +50,7 @@ wget https://data.broadinstitute.org/snowman/hg19/Homo_sapiens_assembly19.fasta.
 
 ```
 
-### 2. Downloading third-party tools required by SplitFusion (--tool_dir)
+### 2. Downloading third-party tools required by SplitFusion
 ```java
 
 1. R: download from https://www.r-project.org/
@@ -199,26 +199,28 @@ optional arguments:
 [An internal fusion library data for downloading as --panel_dir of target mode (click here):](https://github.com/Zheng-NGS-Lab/SplitFusion/blob/master/inst/data/panel/)
 
 ```java
-#python ./SplitFusion/exec/SplitFusion.py --SplitFusionPath SplitFusionPath --refGenome refGenome --bam_dir bam_dir --sample_id sample_id --output output --R R --perl perl --database_dir database_dir --panel_dir SplitFusionPath/data/panel/
-# I installed SplitFusion under
-#       /home/zz/repo/
-# copy ./SplitFusion/inst/data/example_data/Lib001.R1.fq ./SplitFusion/inst/data/example_data/Lib001.R2.fq /home/zz/repo/test
+#python ./SplitFusion/exec/SplitFusion.py --refGenome refGenome --database_dir database_dir --annovar annovar --samtools samtools --bedtools bedtools --bwa bwa --R R --perl perl --output output --sample_id sample_id --bam_dir SplitFusionPath/data/example_data --panel_dir SplitFusionPath/data/panel/ 
+
 # Example run:
 
 ##=========================================================
 ## Start from FASTQ files, no panel info
 ## , compatible with RNA-seq whole transcriptome analysis
 ##=========================================================
-python /home/zz/repo/SplitFusion/exec/SplitFusion.py \
-        --SplitFusionPath /home/zz/R/x86_64-pc-linux-gnu-library/3.5/SplitFusion \
+python2 ./SplitFusion/exec/SplitFusion.py \
+        --refGenome Homo_sapiens_assembly19.fasta \
+        --database_dir /media/storage1/tempdir/zhangbaifeng/database \
+        --annovar /media/storage1/tempdir/zhangbaifeng/tool/annovar \
+        --samtools /media/storage1/tempdir/zhangbaifeng/tool/samtools \
+        --bedtools /media/storage1/tempdir/zhangbaifeng/tool/bedtools \
+        --bwa /media/storage1/tempdir/zhangbaifeng/tool/bwa \
+        --R /media/storage1/tempdir/zhangbaifeng/tool/R \
+        --perl /media/storage1/tempdir/zhangbaifeng/tool/perl \
+        --output /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data/normal_mode_result \
         --sample_id "Lib001" \
-        --fastq_dir /home/zz/repo/test \
-        --database_dir /home/zz/repo/database \
-	--tool_dir /home/zz/repo/tool \
+        --fastq_dir /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data \
         --r1filename "Lib001".R1.fq \
         --r2filename "Lib001".R2.fq \
-        --output /home/zz/repo/test \
-        --refGenome Homo_sapiens_assembly19.fasta \
         --thread 6 &
 
 
@@ -226,49 +228,63 @@ python /home/zz/repo/SplitFusion/exec/SplitFusion.py \
 ## Kickstart mode, no panel info
 ## , compatible with RNA-seq whole transcriptome analysis
 ##=========================================================
-python /home/zz/repo/SplitFusion/exec/SplitFusion.py \
-        --SplitFusionPath /home/zz/R/x86_64-pc-linux-gnu-library/3.5/SplitFusion \
-        --sample_id "Lib001" \
-        --bam_dir /home/zz/repo/test \
-        --database_dir /home/zz/repo/database \
-	--tool_dir /home/zz/repo/tool \
-        --output /home/zz/repo/test \
+python2 ./SplitFusion/exec/SplitFusion.py \
         --refGenome Homo_sapiens_assembly19.fasta \
+        --database_dir /media/storage1/tempdir/zhangbaifeng/database \
+        --annovar /media/storage1/tempdir/zhangbaifeng/tool/annovar \
+        --samtools /media/storage1/tempdir/zhangbaifeng/tool/samtools \
+        --bedtools /media/storage1/tempdir/zhangbaifeng/tool/bedtools \
+        --bwa /media/storage1/tempdir/zhangbaifeng/tool/bwa \
+        --R /media/storage1/tempdir/zhangbaifeng/tool/R \
+        --perl /media/storage1/tempdir/zhangbaifeng/tool/perl \
+        --output /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data/kick_start_mode_result \
+        --sample_id "Lib001" \
+        --bam_dir /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data \
         --thread 6 &
+
+
 
 
 ##===============================
 ## TARGET mode, with panel info
 ##===============================
-python /home/zz/repo/SplitFusion/exec/SplitFusion.py \
-        --SplitFusionPath /home/zz/R/x86_64-pc-linux-gnu-library/3.5/SplitFusion \
-        --sample_id Lib001 \
-        --fastq_dir /home/zz/repo/test \
-        --database_dir /home/zz/repo/database \
-	--tool_dir /home/zz/repo/tool \
-        --panel_dir /home/zz/repo/panel \
-        --panel LungFusion \
+python2 ./SplitFusion/exec/SplitFusion.py \
+        --refGenome Homo_sapiens_assembly19.fasta \
+        --database_dir /media/storage1/tempdir/zhangbaifeng/database \
+        --annovar /media/storage1/tempdir/zhangbaifeng/tool/annovar \
+        --samtools /media/storage1/tempdir/zhangbaifeng/tool/samtools \
+        --bedtools /media/storage1/tempdir/zhangbaifeng/tool/bedtools \
+        --bwa /media/storage1/tempdir/zhangbaifeng/tool/bwa \
+        --R /media/storage1/tempdir/zhangbaifeng/tool/R \
+        --perl /media/storage1/tempdir/zhangbaifeng/tool/perl \
+        --output /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data/target_mode_result \
+        --sample_id "Lib001" \
+        --fastq_dir /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data \
         --r1filename "Lib001".R1.fq \
         --r2filename "Lib001".R2.fq \
-        --output /home/zz/repo/test \
-        --refGenome Homo_sapiens_assembly19.fasta \
+        --panel_dir /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/panel \
+        --panel LungFusion \
         --thread 6 &
 
 
 ##===============================
 ## Selecting only some steps to run
 ##===============================
-python /home/zz/repo/SplitFusion/exec/SplitFusion.py \
-        --SplitFusionPath /home/zz/R/x86_64-pc-linux-gnu-library/3.5/SplitFusion \
-        --sample_id "Lib001" \
-        --bam_dir /home/zz/repo/test \
-        --database_dir /home/zz/repo/database \
-	--tool_dir /home/zz/repo/tool \
-        --panel_dir /home/zz/repo/panel \
-        --panel LungFusion \
-        --output /home/zz/repo/test \
+python2 ./SplitFusion/exec/SplitFusion.py \
         --refGenome Homo_sapiens_assembly19.fasta \
-        --steps "3_breakpoint-filter,4_breakpoint-anno,5_breakpoint-anno-post" \
+        --database_dir /media/storage1/tempdir/zhangbaifeng/database \
+        --annovar /media/storage1/tempdir/zhangbaifeng/tool/annovar \
+        --samtools /media/storage1/tempdir/zhangbaifeng/tool/samtools \
+        --bedtools /media/storage1/tempdir/zhangbaifeng/tool/bedtools \
+        --bwa /media/storage1/tempdir/zhangbaifeng/tool/bwa \
+        --R /media/storage1/tempdir/zhangbaifeng/tool/R \
+        --perl /media/storage1/tempdir/zhangbaifeng/tool/perl \
+        --output /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data/specific_step_mode_result \
+        --sample_id "Lib001" \
+        --fastq_dir /media/storage1/tempdir/zhangbaifeng/software/SplitFusion/inst/data/example_data \
+        --r1filename "Lib001".R1.fq \
+        --r2filename "Lib001".R2.fq \
+        --steps "1_fastq-bam,2_bam-breakpoint,3_breakpoint-filter" \
         --thread 6 &
 ```
 
